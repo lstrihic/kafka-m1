@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  zookeeper:
+    build: ./zookeper
+    ports:
+      - "2181:2181"
+    volumes:
+      - "zookeeper_data:/kafka"
+  kafka:
+    build: ./kafka
+    ports:
+      - "9092:9092"
+    volumes:
+      - "kafka_data:/kafka"
+    depends_on:
+      - zookeeper
+  ui:
+    image: docker.redpanda.com/vectorized/console:latest
+    ports:
+      - "${VARIABLE:-8081}:8080"
+    environment:
+      - KAFKA_BROKERS=kafka:9092
+    depends_on:
+      - kafka
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
+<<<<<<< HEAD
+  kafka_ui_data:
+    driver: local
+=======
+>>>>>>> 8cfab800b8b43ad6eddca528eb07becc34c9aacf
