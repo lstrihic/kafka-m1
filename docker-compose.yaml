@@ -29,8 +29,3 @@ volumes:
     driver: local
   kafka_data:
     driver: local
-<<<<<<< HEAD
-  kafka_ui_data:
-    driver: local
-=======
->>>>>>> 8cfab800b8b43ad6eddca528eb07becc34c9aacf
